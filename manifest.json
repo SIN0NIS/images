@@ -1,0 +1,244 @@
+{
+ "about": "tools/pick_icons.py 가 게임에서 꺼내 넣은 아이콘의 기록. added = 언제 어느 빌드에서 꺼냈나, absent = 게임에도 없어 그 빌드에서는 다시 찾지 않는 이름.",
+ "added": {
+  "abilitytalents/storm_btn_d3_traits_wizard_astralpresence.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "64x64",
+   "px": "f4e0bb02eb523088"
+  },
+  "abilitytalents/storm_ui_icon_alarak_lightningsurge_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "3b28a77b555da1df"
+  },
+  "abilitytalents/storm_ui_icon_anduin_bold_strategy.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "97933bbb7ca153b2"
+  },
+  "abilitytalents/storm_ui_icon_cassia_lightningfury_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "686e6518cf70e78e"
+  },
+  "abilitytalents/storm_ui_icon_dva_boosters_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "8d8655fb6dbe530d"
+  },
+  "abilitytalents/storm_ui_icon_dva_pilotmode_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "dd1af0d103eaf0b7"
+  },
+  "abilitytalents/storm_ui_icon_dva_pilotmode_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "d97f0537aacc8ec5"
+  },
+  "abilitytalents/storm_ui_icon_gazlowe_salvager_var1.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "85b9a87d11b08e69"
+  },
+  "abilitytalents/storm_ui_icon_genji_dodge.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "874800c3dbd1a484"
+  },
+  "abilitytalents/storm_ui_icon_junkrat_frag_launcher_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "567a694d6e9e6659"
+  },
+  "abilitytalents/storm_ui_icon_junkrat_frag_launcher_c.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "f176c3216ff264e1"
+  },
+  "abilitytalents/storm_ui_icon_medic_medivacdropship_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "9586aceb29b80465"
+  },
+  "abilitytalents/storm_ui_icon_probius_warprift_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "5e4d865ec88b48b7"
+  },
+  "abilitytalents/storm_ui_icon_raynor_split_fuelrush.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "e75d5cb11467defe"
+  },
+  "abilitytalents/storm_ui_icon_stitches_horror.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "d1ad69868c47991d"
+  },
+  "abilitytalents/storm_ui_icon_stukov_spinelauncher.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "5055d358d1befb4c"
+  },
+  "abilitytalents/storm_ui_icon_talent_shrinkray.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "576b391707c92b1b"
+  },
+  "abilitytalents/storm_ui_icon_tassadar_plasmashield.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "ea8534977efad23c"
+  },
+  "abilitytalents/storm_ui_icon_tassadar_plasmashield_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "b046e535b4e67481"
+  },
+  "abilitytalents/storm_ui_icon_tassadar_plasmashield_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "73aab5d9a1b8cdbf"
+  },
+  "abilitytalents/storm_ui_icon_tracer_blink_c.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "933038cc344b739b"
+  },
+  "abilitytalents/storm_ui_icon_tracer_blink_d.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "0e855b076fac0fe3"
+  },
+  "abilitytalents/storm_ui_icon_tychus_fraggrenade_a.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "f78710dcd862d406"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_e_darkheartritual.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "644110d5dfe92af6"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_e_darkheartritual_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "dc48c7a2dfb1d4dc"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_q_shadowmark.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "2e80995344e3e6a9"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_r1_voideruption.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "c255deca7bfa54e6"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_r1_voideruption_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "aa97b6b049e18689"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_r2_voidconvergence.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "dc28c600fe0cb3e1"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_trait.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "350419e97232a412"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_w_voidstep.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "e7a3a00e1bc6e98d"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_w_voidstep_b.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "111cd991e3310dbf"
+  },
+  "abilitytalents/storm_ui_icon_xalatath_w_voidstep_c.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "128x128",
+   "px": "5318791fdd43a4bf"
+  },
+  "heroportraits/storm_ui_ingame_heroselect_btn_xalatath.png": {
+   "from": "herot",
+   "version": "2.57.0.98217",
+   "date": "2026-09-23",
+   "size": "126x126",
+   "px": "89be207a2f5637cd"
+  }
+ },
+ "absent": {}
+}

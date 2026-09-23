@@ -1,0 +1,118 @@
+# 빠진 아이콘 채우기 — HotS Scrap 이 "부르는데 없다"고 적어 둔 것만 게임에서 꺼내 넣는다.
+#
+# 6시간마다, HotS Scrap 자동 갱신(:10) 40분 뒤에 돈다.
+#   1) HotS Scrap 의 site/images/index.json → `need` 를 읽는다 (GitHub API 요청 1개)
+#   2) 여기 이미 있는 것은 뺀다 — 그림은 받지 않고 git 목록만 본다(362MB 를 안 받는다)
+#   3) 남은 게 없으면 **여기서 끝** — 블리자드에는 요청 0개
+#   4) 있으면 블리자드 서버에서 그 이름들만 콕 집어 꺼낸다(파일 목록 약 250MB + 아이콘 몇 KB, 1~2분)
+#      테스트 서버를 먼저, 없으면 본 서버. 게임에도 없는 이름은 manifest.json 에 적고 빌드가 바뀔 때까지 안 찾는다
+#   5) 커밋·푸시하고 Pages 를 다시 굽게 한다
+#
+# 있는 파일은 지우지도 덮어쓰지도 않는다. 손으로 돌리려면 Actions 탭 → Run workflow.
+name: Pick Missing Icons
+
+on:
+  schedule:
+    - cron: "50 */6 * * *"    # UTC 00:50·06:50·12:50·18:50 = 한국 시각 09:50·15:50·21:50·03:50
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write               # 푸시 뒤 Pages 를 다시 굽게 요청한다
+  actions: write             # 예약이 60일 무활동으로 꺼지지 않게 스스로 깨운다(아래 마지막 단계)
+
+concurrency:
+  group: pick-icons
+  cancel-in-progress: false
+
+jobs:
+  pick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONIOENCODING: utf-8
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none      # 그림은 받지 않는다 — 무엇이 있는지는 git 목록으로 안다
+          sparse-checkout: |
+            .github
+            tools
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 라이브러리 설치
+        run: pip install --quiet pillow
+
+      - name: 무엇을 꺼낼지 확인 (블리자드에 요청 안 함)
+        id: plan
+        run: python tools/pick_icons.py --plan
+
+      # ─── 아래는 꺼낼 것이 있을 때만 ───
+      - uses: actions/setup-dotnet@v4
+        if: steps.plan.outputs.todo != '0'
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: HeroesDataParser 설치
+        if: steps.plan.outputs.todo != '0'
+        run: dotnet tool install --global HeroesDataParser --version 5.0.2
+
+      - name: 게임에서 꺼내 넣기
+        id: pick
+        if: steps.plan.outputs.todo != '0'
+        continue-on-error: true      # 한쪽 서버를 못 봐도(종료 코드 3) 받아 놓은 것은 아래에서 올린다
+        run: python tools/pick_icons.py
+
+      - name: 커밋·푸시
+        id: push
+        if: ${{ !cancelled() && steps.plan.outputs.todo != '0' }}
+        run: |
+          git config user.name  "hots-scrap-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 일부만 받아 둔 사본이라 새로 생긴 파일만 콕 집어 올린다(있는 파일은 건드리지 않는다)
+          git add --sparse manifest.json
+          git ls-files -z --others --exclude-standard -- abilitytalents heroportraits | xargs -0 -r git add --sparse --
+          if git diff --cached --quiet; then
+            echo "바뀐 것이 없습니다."
+            exit 0
+          fi
+          n=$(git diff --cached --name-only -- abilitytalents heroportraits | wc -l)
+          git commit -m "아이콘 ${n}개 채움 — 게임에서 꺼냄
+
+          HotS Scrap 이 부르는데 없던 것만 블리자드 서버(CASC)에서 꺼내 넣었습니다.
+          자세한 출처(제품·빌드)는 manifest.json 에 있습니다."
+          git push || { git pull --rebase && git push; }
+          echo "pushed=1" >> "$GITHUB_OUTPUT"
+
+      - name: Pages 다시 굽기
+        if: steps.push.outputs.pushed == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" --jq .status || echo "::warning::Pages 굽기 요청이 거절됐습니다(푸시로 저절로 구워질 수 있습니다)"
+
+      # GitHub 은 공개 저장소의 예약 작업을 **60일간 아무 활동이 없으면 꺼 버린다.**
+      # 여기는 채울 게 있을 때만 커밋하므로, 새 영웅이 몇 달 안 나오면 조용히 멈춘다.
+      # 커밋 없이 활동으로 쳐 주는 API 호출로 매 회차 되살려 둔다(요청 1개).
+      - name: 예약이 꺼지지 않게 깨우기 (요청 1개)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api -X PUT "repos/${{ github.repository }}/actions/workflows/pick-icons.yml/enable"             && echo "예약 살아 있음" || echo "::warning::예약 깨우기에 실패했습니다"
+
+      - name: 못 본 서버가 있으면 실패로 남긴다
+        if: steps.pick.outcome == 'failure'
+        run: |
+          echo "::error::블리자드 서버 한쪽을 보지 못했습니다. 다음 회차에 다시 찾습니다."
+          exit 1
+
+      - name: 요약
+        if: always()
+        run: |
+          echo "### 빠진 아이콘 채우기" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 꺼낼 것: ${{ steps.plan.outputs.todo || '?' }}개" >> "$GITHUB_STEP_SUMMARY"
+          echo "- 넣은 것: ${{ steps.pick.outputs.added || '0' }}개" >> "$GITHUB_STEP_SUMMARY"
